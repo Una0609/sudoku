@@ -1,0 +1,202 @@
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 25px 12px;
+            font-family: Arial, "Noto Sans TC", sans-serif;
+            background: #f3f5f2;
+            color: #35443d;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+        }
+
+        h1 {
+            color: #547966;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 16px 0;
+        }
+
+        select,
+        button {
+            padding: 10px 14px;
+            border: 1px solid #cbd8cf;
+            border-radius: 8px;
+            background: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        button {
+            background: #6f9981;
+            color: white;
+            border: none;
+        }
+
+        button:hover {
+            background: #527b65;
+        }
+
+        button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        #timer {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px;
+        }
+
+        #board {
+            display: grid;
+            /* 固定為 9 欄、9 列，避免空白列／行因內容較少而縮小 */
+            grid-template-columns: repeat(9, minmax(0, 1fr));
+            grid-template-rows: repeat(9, minmax(0, 1fr));
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            box-sizing: border-box;
+            border: 3px solid #547966;
+            background: white;
+        }
+
+        .cell {
+            min-width: 0;
+            min-height: 0;
+            box-sizing: border-box;
+            border: 1px solid #d7dfd9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(15px, 4vw, 23px);
+            cursor: pointer;
+        }
+
+        .cell:nth-child(3n) {
+            border-right: 2px solid #547966;
+        }
+
+        .cell:nth-child(9n) {
+            border-right: none;
+        }
+
+        .cell:nth-child(n+19):nth-child(-n+27),
+        .cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid #547966;
+        }
+
+        .cell.fixed {
+            background: #eef3ef;
+            font-weight: bold;
+        }
+
+        .cell.selected {
+            background: #d5e8da;
+        }
+
+        .cell.related {
+            background: #f0f5f0;
+        }
+
+        .cell.same {
+            background: #dceadd;
+        }
+
+        .cell.error {
+            color: #d74747;
+            background: #ffe4e4;
+        }
+
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 6px;
+            margin-top: 15px;
+        }
+
+        .numbers button {
+            padding: 12px 0;
+            font-size: 20px;
+            background: #e2ebe4;
+            color: #456650;
+        }
+
+        .numbers button:hover {
+            background: #c8ddce;
+        }
+
+        #message {
+            min-height: 28px;
+            margin: 15px 0;
+            color: #547966;
+            font-weight: bold;
+        }
+
+        /* 結算視窗 */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            background: rgba(30, 45, 35, .65);
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 380px;
+            border-radius: 18px;
+            padding: 28px 22px;
+            box-shadow: 0 8px 30px #0002;
+        }
+
+        .modal-content h2 {
+            color: #547966;
+            margin-top: 0;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 5px;
+            border-bottom: 1px solid #e5ebe6;
+        }
+
+        .result-item span:last-child {
+            font-weight: bold;
+            color: #547966;
+        }
+
+        .result-time {
+            font-size: 34px;
+            font-weight: bold;
+            color: #6f9981;
+            margin: 15px 0;
+        }
+
+        @media(max-width: 400px) {
+
+            .controls button,
+            .controls select {
+                padding: 9px 10px;
+            }
+        }
